@@ -28,17 +28,6 @@ class Fecha:
     def set_año(self, año):
         self.año = año
 
-    @staticmethod
-    def comparar_año(año1, año2):
-        return año1 == año2
-
-    @staticmethod
-    def comparar_mes(mes1, mes2):
-        return mes1 == mes2
-
-    @staticmethod
-    def comparar_dia(dia1, dia2):
-        return dia1 == dia2
 
     def restar_meses(self, meses):
         mes = self.mes - meses
