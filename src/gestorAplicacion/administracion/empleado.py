@@ -70,12 +70,37 @@ class Empleado:
                             lista_a_transferir[idx_sede].append(emp)
                             se_va_a_despedir = False
 
-                if se_va_a_despedir and emp.area_actual != 'Corte' and emp.traslados < 2 and sede.cantidad_por_area(emp.area_actual) != 1:
+                if se_va_a_despedir and emp.area_actual != Area.CORTE and emp.traslados < 2 and sede.cantidad_por_area(emp.area_actual) != 1:
                     puede_cambiar_area = True
                     for area_pasada in emp.areas:
                         if area_pasada > emp.area_actual:
                             puede_cambiar_area = False
                             break
                     if puede_cambiar_area and emp.areaActual:
+                        emp.area_actual = emp.areas[emp.areas.index(emp.area_actual) -1]
+                        emp.traslados += 1
+                        se_va_a_despedir = False
+                        lista_a_despedir.remove(emp)
+
+        for idx_sede, sede in enumerate(Sede.get_lista_sedes()):
+            for emp in lista_a_transferir[idx_sede]:
+                mensajes += emp.transferir(sede)
+                
 
         return retorno
+    
+    def trasladar_empleado(self, sede_nueva) -> List[str]:
+        mensajes = []
+        a_pagar = Maquinaria.remuneracion_danos(self)
+        if Banco.get_cuenta_principal() is not None:
+            Banco.get_cuenta_principal().transaccion(a_pagar)
+        else:
+            mensajes.append("Perdonenos pero disculpenos: No se ha podido recibir la remuneración de daños, no hay cuenta principal, sugerimos añadir una.")
+        self.modificar_bonificacion(a_pagar * -1)
+        Maquinaria.liberar_maquinaria_de(self)
+
+        self.traslados += 1
+        self.set_sede(sede_nueva)
+
+        Maquinaria.asignar_maquinaria(self)
+        return mensajes

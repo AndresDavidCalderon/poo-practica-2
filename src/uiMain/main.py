@@ -1,5 +1,5 @@
 from ..gestorAplicacion.administracion import Empleado
-from gestorAplicacion import Persona, Sede
+from ..gestorAplicacion import Persona, Sede
 import locale
 from typing import List
 
