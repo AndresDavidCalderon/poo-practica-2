@@ -73,3 +73,8 @@ class Repuesto(Insumo):
 
     def usar(self, horas: int):
         self.horas_de_uso += horas
+
+
+    # Auxiliary to Maquina.usar
+    def usar(self, horas):
+        self.horas_de_uso += horas
