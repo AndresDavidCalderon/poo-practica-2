@@ -2,9 +2,10 @@ from ..fecha import Fecha
 from ..sede import Sede
 from ..venta import Venta
 from .area import Area
+from typing import List
 
 class Empleado:
-    def __init__(self, nombre, area_actual, traslados, areas, sede):
+    def __init__(self, nombre: str , area_actual:Area, traslados:int, areas:List[Area], sede:Sede):
         self.nombre = nombre
         self.area_actual = area_actual
         self.traslados = traslados
@@ -44,7 +45,7 @@ class Empleado:
 
     # Parte de la interacción 1 de gestion humana
     @classmethod
-    def lista_inicial_despedir_empleado(cls, fecha: Fecha):
+    def lista_inicial_despedir_empleado(cls, fecha: Fecha) -> List[List]:
         lista_a_despedir = []
         mensajes = []
         retorno = [lista_a_despedir, mensajes]
@@ -75,5 +76,6 @@ class Empleado:
                         if area_pasada > emp.area_actual:
                             puede_cambiar_area = False
                             break
+                    if puede_cambiar_area and emp.areaActual:
 
         return retorno

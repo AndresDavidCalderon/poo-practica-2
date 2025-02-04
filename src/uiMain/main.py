@@ -1,6 +1,7 @@
-from gestorAplicacion.administracion import Empleado
+from ..gestorAplicacion.administracion import Empleado
 from gestorAplicacion import Persona, Sede
 import locale
+from typing import List
 
 locale.setlocale(locale.LC_ALL, 'es_ES')
 comparador = locale.strxfrm
@@ -40,7 +41,7 @@ Main.main()
 
 def despedir_empleados(fecha):
     print("Obteniendo lista sugerida de empleados")
-    info_despidos = Empleado.lista_inicial_despedir_empleado(fecha)
+    info_despidos : List[List] = Empleado.lista_inicial_despedir_empleado(fecha)
     a_despedir = info_despidos[0]
     mensajes = info_despidos[1]
 
