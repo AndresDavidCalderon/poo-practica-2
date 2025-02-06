@@ -1,6 +1,7 @@
+from src.gestorAplicacion.administracion import gastoMensual
 from src.gestorAplicacion.sede import Sede;
 
-class Insumo:
+class Insumo (gastoMensual):
     precio_stock_total = 0
 
     def __init__(self, nombre, cantidad=None, proveedor=None, sede=None, horas_de_vida_util=None):

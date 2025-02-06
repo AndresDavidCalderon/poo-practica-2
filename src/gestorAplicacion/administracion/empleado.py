@@ -1,10 +1,12 @@
+from src.gestorAplicacion.administracion import gastoMensual
+from src.gestorAplicacion.persona import Persona
 from ..fecha import Fecha
 from ..sede import Sede
 from ..venta import Venta
 from .area import Area
 from typing import List
 
-class Empleado:
+class Empleado (Persona,gastoMensual):
     def __init__(self, nombre: str , area_actual:Area, traslados:int, areas:List[Area], sede:Sede):
         self.nombre = nombre
         self.area_actual = area_actual
