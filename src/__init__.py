@@ -1,0 +1,1 @@
+# Este paquete agrupa uiMain y gestorAplicacion para que se puedan importar entre ellos
